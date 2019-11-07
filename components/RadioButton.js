@@ -1,43 +1,35 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 
-export default class RadioButtons extends Component {
-  state = {
-    value: null,
-  };
+export const RadioButton = props => {
+  const {options} = props;
+  const [value, setValue] = useState(options[0].key);
 
-  render() {
-    const {options} = this.props;
-    const {value} = this.state;
-
-    return (
-      <View>
-        {options.map(item => {
-          return (
-            <View key={item.key} style={styles.buttonContainer}>
-              <Text>{item.text}</Text>
-              <TouchableOpacity
-                style={styles.circle}
-                onPress={() => {
-                  this.setState({
-                    value: item.key,
-                  });
-                }}>
-                {value === item.key && <View style={styles.checkedCircle} />}
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      {options.map(item => {
+        return (
+          <View key={item.key} style={styles.buttonContainer}>
+            <Text>{item.text}</Text>
+            <TouchableOpacity
+              style={styles.circle}
+              onPress={() => {
+                setValue(item.key);
+              }}>
+              {value === item.key && <View style={styles.checkedCircle} />}
+            </TouchableOpacity>
+          </View>
+        );
+      })}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     marginBottom: 30,
   },
 
