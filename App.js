@@ -1,9 +1,9 @@
 import React from 'react';
 import {ApplicationProvider} from 'react-native-ui-kitten';
 import {mapping, light, dark} from '@eva-design/eva';
-import {Home} from './components/Home';
+// import {Home} from './components/Home';
 import {RadioButton} from './components/RadioButton';
-import {StyleSheet, SafeAreaView, Text, View} from 'react-native';
+import {StyleSheet, SafeAreaView, Text, View, TextInput} from 'react-native';
 
 const themes = {light, dark};
 
@@ -31,25 +31,55 @@ const optionsFood = [
 
 const App = () => {
   const [theme, setTheme] = React.useState('light');
+  const [weightValue, onChangeWeight] = React.useState('');
+  const [wineValue, onChangeWine] = React.useState('');
+  const [mixedDrinksValue, onChangeMixedDrinks] = React.useState('');
+  const [shotsValue, onChangeShots] = React.useState('');
+  const [beersValue, onChangeBeers] = React.useState('');
 
-  const toggleTheme = () => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
-  };
+  // const toggleTheme = () => {
+  //   const nextTheme = theme === 'light' ? 'dark' : 'light';
+  //   setTheme(nextTheme);
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
       <ApplicationProvider mapping={mapping} theme={themes[theme]}>
         <Text>Gender:</Text>
         <RadioButton options={optionsGender} />
-        <View
-          style={{
-            borderBottomColor: 'grey',
-            borderBottomWidth: 1,
-          }}
-        />
+        <View style={styles.view} />
         <Text>Have you eaten?</Text>
         <RadioButton options={optionsFood} />
+        <TextInput
+          style={styles.textField}
+          onChangeText={text => onChangeWeight(text)}
+          value={weightValue}
+          placeholder="Enter your weight in lbs:"
+        />
+        <TextInput
+          style={styles.textField}
+          onChangeText={text => onChangeWine(text)}
+          value={wineValue}
+          placeholder="Wine glasses drank:"
+        />
+        <TextInput
+          style={styles.textField}
+          onChangeText={text => onChangeMixedDrinks(text)}
+          value={mixedDrinksValue}
+          placeholder="Mixed drinks destroyed:"
+        />
+        <TextInput
+          style={styles.textField}
+          onChangeText={text => onChangeShots(text)}
+          value={shotsValue}
+          placeholder="Shots to the brain:"
+        />
+        <TextInput
+          style={styles.textField}
+          onChangeText={text => onChangeBeers(text)}
+          value={beersValue}
+          placeholder="Beers drank:"
+        />
       </ApplicationProvider>
     </SafeAreaView>
   );
@@ -58,6 +88,15 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  textField: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+  },
+  view: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
   },
 });
 
