@@ -3,7 +3,15 @@ import {ApplicationProvider} from 'react-native-ui-kitten';
 import {mapping, light, dark} from '@eva-design/eva';
 // import {Home} from './components/Home';
 import {RadioButton} from './components/RadioButton';
-import {StyleSheet, SafeAreaView, Text, View, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Alert,
+} from 'react-native';
 
 const themes = {light, dark};
 
@@ -30,7 +38,7 @@ const optionsFood = [
 ];
 
 const App = () => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState('dark');
   const [weightValue, onChangeWeight] = React.useState('');
   const [wineValue, onChangeWine] = React.useState('');
   const [mixedDrinksValue, onChangeMixedDrinks] = React.useState('');
@@ -80,6 +88,14 @@ const App = () => {
           value={beersValue}
           placeholder="Beers drank:"
         />
+        <Text>Beer set to: 12oz, 5% abv</Text>
+        <Text>Glass of wine set to: 5oz, 12% abv</Text>
+        <Text>One shot set to: 1.5oz, 40% abv</Text>
+        <Text>Mixed drink set to: 2 shots</Text>
+        <Button
+          title="Cheers!"
+          onPress={() => Alert.alert('Simple Button pressed')}
+        />
       </ApplicationProvider>
     </SafeAreaView>
   );
@@ -91,11 +107,11 @@ const styles = StyleSheet.create({
   },
   textField: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderWidth: 1,
   },
   view: {
-    borderBottomColor: 'grey',
+    borderBottomColor: 'black',
     borderBottomWidth: 1,
   },
 });
